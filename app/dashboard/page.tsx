@@ -1,0 +1,7 @@
+'use client';
+import {useEffect,useState} from 'react';import Link from 'next/link';
+export default function Dashboard(){const [data,setData]=useState<any>(null),[error,setError]=useState('');
+ useEffect(()=>{fetch('/api/reports/dashboard').then(async r=>{const d=await r.json();if(!r.ok)throw Error(d.error);setData(d)}).catch(e=>setError(e.message))},[]);
+ const stats=[['Livros cadastrados',data?.totalBooks],['Exemplares no acervo',data?.totalCopies],['Empréstimos ativos',data?.activeLoans],['Empréstimos atrasados',data?.lateLoans],['Leitores',data?.readers],['Multas registradas',data?.fines===undefined?'—':`R$ ${Number(data.fines).toFixed(2)}`]];
+ return <><h1>Painel da biblioteca</h1><p className="muted">Resumo dos dados em tempo real.</p>{error&&<div className="error">{error==='Somente administradores.'?'Relatórios disponíveis somente para administradores.':error}</div>}<div className="grid">{stats.map(([label,value])=><div className="stat" key={label}><span className="muted">{label}</span><strong>{value??'—'}</strong></div>)}</div><div className="panel" style={{marginTop:22}}><h2>Acesso rápido</h2><div className="actions">{[['Livros','livros'],['Leitores','leitores'],['Empréstimos','emprestimos'],['Categorias','categorias'],['Autores','autores']].map(([label,slug])=><Link key={slug} href={'/dashboard/'+slug} className="btn" style={{textDecoration:'none'}}>{label}</Link>)}</div></div></>;
+}
