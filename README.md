@@ -12,3 +12,9 @@ As chamadas do navegador usam `/api/*` no servidor Next, que encaminha ao Expres
 Tela de login, dashboard, cadastros de categorias/autores/livros/leitores/atendentes, consulta de empréstimos, devolução, filtros e relatórios. Admin pode gerenciar cadastros administrativos e ver relatórios; atendente gerencia leitores e empréstimos.
 
 **Atenção:** não confunda `http://localhost:3000` (site) com `http://localhost:3001` (API). Não guarde `.env.local` nem senhas no Git.
+
+## VÍDEO
+
+(ACESSAR COM E-MAIL DA UNIPAR)
+
+https://drive.google.com/file/d/1ytVsfmtexqepicjCvPgBAB0UdowoJdXm/view?usp=sharing
